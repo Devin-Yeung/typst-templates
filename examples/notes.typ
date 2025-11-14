@@ -9,6 +9,12 @@
 
 Modern deep learning relies on sophisticated optimization algorithms that leverage gradient information to minimize complex loss landscapes. The interplay between batch normalization, adaptive learning rates, and regularization techniques creates robust training dynamics across diverse architectures.
 
+example figure
+#figure(
+  image("../figures/typst.png", width: 100pt),
+  caption: [A example of integrating images into documentation.],
+)
+
 == Performance Comparison
 
 Recent advances in attention mechanisms have demonstrated remarkable improvements over traditional convolutional architectures. Self-attention allows models to capture long-range dependencies more effectively than local convolutions. The transformer architecture's success in natural language processing has naturally extended to computer vision tasks, where patch-based tokenization enables direct application of attention mechanisms to image data.

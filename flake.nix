@@ -23,13 +23,8 @@
       system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
-
         inherit (pkgs) lib;
-
         typixLib = typix.lib.${system};
-
-        src = typixLib.cleanTypstSource ./.;
-
         internal = import ./nix/internal {
           inherit pkgs flake-utils typixLib;
         };
@@ -40,6 +35,14 @@
           mkTypstArtifacts
           mergeArtifacts
           ;
+
+        src = lib.fileset.toSource {
+          root = ./.;
+          fileset = lib.fileset.unions [
+            (lib.fileset.fromSource (typixLib.cleanTypstSource ./.))
+            ./figures
+          ];
+        };
 
         mkDoc =
           { name, typstSource }:
