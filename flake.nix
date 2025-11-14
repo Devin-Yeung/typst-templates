@@ -49,13 +49,13 @@
           };
       in
       let
-        example = mkDoc {
-          name = "example";
-          typstSource = "main.typ";
+        notes-example = mkDoc {
+          name = "notes-example";
+          typstSource = "examples/notes.typ";
         };
       in
       mergeArtifacts [
-        example
+        notes-example
       ]
     );
 }

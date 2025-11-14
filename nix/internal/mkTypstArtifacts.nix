@@ -14,7 +14,7 @@ let
     # Specify the main Typst source file here
     inherit typstSource;
     typstOpts = {
-      root = "../";
+      root = "."; # Set the root directory for Typst
     };
   };
 
