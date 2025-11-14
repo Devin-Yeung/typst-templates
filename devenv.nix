@@ -31,11 +31,18 @@
       enable = true;
     };
 
-    yamlfmt = {
+    nixfmt-rfc-style = {
       enable = true;
     };
 
-    treefmt = {
+    yamlfmt = {
+      enable = true;
+      settings = {
+        lint-only = false;
+      };
+    };
+
+    typstyle = {
       enable = true;
     };
 
