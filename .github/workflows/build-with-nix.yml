@@ -14,6 +14,8 @@ jobs:
           - ubuntu-latest
           - macos-latest
           - ubuntu-24.04-arm
+        doc:
+          - notes-example
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout tree
@@ -21,7 +23,7 @@ jobs:
       - name: Install Nix
         uses: DeterminateSystems/determinate-nix-action@main
       - name: Build the document
-        run: nix run .#build-lecture-notes
+        run: nix run .#build-${{ matrix.doc }}
   flake-check:
     strategy:
       fail-fast: false
