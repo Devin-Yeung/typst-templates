@@ -1,11 +1,13 @@
 {
-  name, # the name of the artifact
-  typstSource, # the main Typst source file
   typixLib,
   flake-utils,
+}:
+{
+  name, # the name of the artifact
+  typstSource, # the main Typst source file
   baseArgs,
   src, # the cleaned Typst sources
-  unstable_typstPackages,
+  typstPackages,
 }:
 let
   commonArgs = baseArgs // {
@@ -21,7 +23,8 @@ let
     "build-${name}-drv" = typixLib.buildTypstProject (
       commonArgs
       // {
-        inherit src unstable_typstPackages;
+        inherit src;
+        unstable_typstPackages = typstPackages;
       }
     );
 
@@ -29,7 +32,8 @@ let
     "build-${name}-script" = typixLib.buildTypstProjectLocal (
       commonArgs
       // {
-        inherit src unstable_typstPackages;
+        inherit src;
+        unstable_typstPackages = typstPackages;
         typstOutput = "${name}.pdf";
       }
     );
@@ -60,5 +64,6 @@ let
   };
 in
 {
-  inherit drvs apps;
+  inherit apps;
+  checks = drvs;
 }

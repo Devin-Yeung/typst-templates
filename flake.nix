@@ -30,25 +30,32 @@
 
         src = typixLib.cleanTypstSource ./.;
 
-        unstable_typstPackages = import ./nix/typstPackages.nix;
-        mkTypstArtifacts = import ./nix/mkTypstArtifacts.nix;
-        mkBaseArgs = import ./nix/mkBaseArgs.nix;
+        internal = import ./nix/internal {
+          inherit pkgs flake-utils typixLib;
+        };
 
-        baseArgs = mkBaseArgs { inherit pkgs; };
+        inherit (internal)
+          baseArgs
+          typstPackages
+          mkTypstArtifacts
+          mergeArtifacts
+          ;
 
         mkDoc =
           { name, typstSource }:
           mkTypstArtifacts {
             inherit name typstSource;
-            inherit typixLib flake-utils;
-            inherit baseArgs src unstable_typstPackages;
+            inherit baseArgs src typstPackages;
           };
       in
-      lib.fold lib.recursiveUpdate { } [
-        (mkDoc {
+      let
+        example = mkDoc {
           name = "example";
           typstSource = "main.typ";
-        })
+        };
+      in
+      mergeArtifacts [
+        example
       ]
     );
 }
