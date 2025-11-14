@@ -1,12 +1,20 @@
 {
+  name, # the name of the artifact
+  typstSource, # the main Typst source file
   typixLib,
   flake-utils,
-  name,
-  commonArgs,
-  src,
+  baseArgs,
+  src, # the cleaned Typst sources
   unstable_typstPackages,
 }:
 let
+  commonArgs = baseArgs // {
+    # Specify the main Typst source file here
+    inherit typstSource;
+    typstOpts = {
+      root = "../";
+    };
+  };
 
   drvs = {
     # Compile a Typst project, *without* copying the result to the current directory
