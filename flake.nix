@@ -56,9 +56,14 @@
           name = "notes-example";
           typstSource = "examples/notes.typ";
         };
+        cheatsheet-example = mkDoc {
+          name = "cheatsheet-example";
+          typstSource = "examples/cheatsheet.typ";
+        };
       in
       mergeArtifacts [
         notes-example
+        cheatsheet-example
       ]
     );
 }
