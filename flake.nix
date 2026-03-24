@@ -1,5 +1,5 @@
 {
-  description = "A opinionated typst lecture notes template";
+  description = "A collection of opinionated typst templates";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
