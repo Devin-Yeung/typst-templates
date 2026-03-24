@@ -1,6 +1,6 @@
 { lib }:
 artifacts:
-lib.fold lib.recursiveUpdate { } (
+lib.foldr lib.recursiveUpdate { } (
   map (doc: {
     inherit (doc) checks apps;
   }) artifacts
